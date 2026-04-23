@@ -1,23 +1,10 @@
-import { StyleSheet } from 'react-native';
-
-import { Text, View } from '@/components/Themed';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import FriendsBubbles from "@/components/FriendsBubbles";
 
 export default function FriendsScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Friends</Text>
-    </View>
-  );
+    return (
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <FriendsBubbles />
+        </GestureHandlerRootView>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
