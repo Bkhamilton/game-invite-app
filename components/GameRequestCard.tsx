@@ -141,14 +141,9 @@ const styles = StyleSheet.create({
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
-        // dark gradient-like scrim — stronger at the bottom
-        backgroundColor: "transparent",
-        // We simulate a gradient with a layered approach:
-        // bottom half is opaque-ish, top is transparent.
-        // React Native doesn't natively support gradients, so we use a
-        // semi-transparent black that covers the full card.
-        background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.0) 55%)",
-    } as any,
+        // Semi-transparent scrim; the bottomRow adds a darker layer at the bottom.
+        backgroundColor: "rgba(0,0,0,0.25)",
+    },
     bottomRow: {
         position: "absolute",
         bottom: 0,
