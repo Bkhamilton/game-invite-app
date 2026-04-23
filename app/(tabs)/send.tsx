@@ -18,6 +18,7 @@ import {
     TextInput,
     View,
 } from "react-native";
+import type { StyleProp, ViewStyle } from "react-native";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -142,9 +143,9 @@ const CONVERSATIONS: Conversation[] = [
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function initials(name: string): string {
-    return name
-        .trim()
-        .split(/\s+/)
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return "?";
+    return parts
         .map((w) => w[0]?.toUpperCase() ?? "")
         .slice(0, 2)
         .join("");
@@ -159,7 +160,7 @@ function AvatarBubble({
 }: {
     participant: Participant;
     size?: number;
-    style?: object;
+    style?: StyleProp<ViewStyle>;
 }) {
     return (
         <View
@@ -272,7 +273,7 @@ function ConversationRow({ conversation: c }: { conversation: Conversation }) {
                 <Text style={[styles.timestamp, c.unread && styles.timestampUnread]}>
                     {c.timestamp}
                 </Text>
-                {c.unread && c.unreadCount != null && c.unreadCount > 0 && (
+                {c.unread && c.unreadCount !== null && c.unreadCount !== undefined && c.unreadCount > 0 && (
                     <UnreadBadge count={c.unreadCount} />
                 )}
             </View>
